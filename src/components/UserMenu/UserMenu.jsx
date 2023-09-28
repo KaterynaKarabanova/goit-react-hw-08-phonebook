@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from 'redux/authSlice';
 import { getProfileThunk } from 'redux/operations';
 import { delToken } from 'services/auth-servise';
-
+import { UserMenuDiv, UserMenuName, UserMenuBtn } from './UserMenu.styled';
 export const UserMenu = () => {
   const { profile, token } = useSelector(state => state.auth);
   console.log(token);
@@ -26,11 +26,11 @@ export const UserMenu = () => {
     token && dispatch(getProfileThunk());
   }, [dispatch, token]);
   return (
-    <div>
-      {profile && <p>{profile.email}</p>}
-      <button onClick={e => (token ? handleLogout(e) : handleLogin(e))}>
+    <UserMenuDiv>
+      {profile && <UserMenuName>Welcome, {profile.email}</UserMenuName>}
+      <UserMenuBtn onClick={e => (token ? handleLogout(e) : handleLogin(e))}>
         {token ? 'Logout' : 'LogIn'}
-      </button>
-    </div>
+      </UserMenuBtn>
+    </UserMenuDiv>
   );
 };

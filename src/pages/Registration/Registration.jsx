@@ -1,6 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { registrateUser } from 'services/auth-servise';
+import { HomeTitle } from '../Home/Home.styled';
+import {
+  StyledContactlabel,
+  StyledContactInput,
+} from '../../components/ContactsForm/ContactForm.styled';
 
+import { UserMenuBtn } from '../../components/UserMenu/UserMenu.styled';
 export const Registration = () => {
   const navigate = useNavigate();
   const handleSubmit = e => {
@@ -20,37 +26,37 @@ export const Registration = () => {
 
   return (
     <div>
-      <h1>Registration</h1>
+      <HomeTitle>Registration</HomeTitle>
       <form onSubmit={e => handleSubmit(e)}>
-        <label>
+        <StyledContactlabel>
           Name
-          <input
+          <StyledContactInput
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-        </label>
-        <label>
+        </StyledContactlabel>
+        <StyledContactlabel>
           Email
-          <input
+          <StyledContactInput
             type="email"
             name="email"
             title="Need to add email using this format 'email@email.com'"
             required
           />
-        </label>
-        <label>
+        </StyledContactlabel>
+        <StyledContactlabel style={{ marginBottom: '65px' }}>
           Password
-          <input
+          <StyledContactInput
             type="password"
             name="password"
             title="add you password"
             required
           />
-        </label>
-        <button type="submit">Registrate</button>
+        </StyledContactlabel>
+        <UserMenuBtn type="submit">Registrate</UserMenuBtn>
       </form>
     </div>
   );

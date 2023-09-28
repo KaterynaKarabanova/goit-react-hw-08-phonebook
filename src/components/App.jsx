@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import { Contacts } from '../pages/Contacts';
 import { LogIn } from 'pages/LogIn';
-import { Registration } from 'pages/Registration';
-import { Home } from 'pages/Home';
-import { Layout } from 'pages/Layout';
+import { AppDiv } from './App.styled';
+import { Registration } from 'pages/Registration/Registration';
+import { Home } from 'pages/Home/Home';
+import { Layout } from 'pages/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { refreshUser } from 'redux/operations';
@@ -20,7 +21,7 @@ export const App = () => {
   return isRefreshing ? (
     <b>Refreshing user</b>
   ) : (
-    <div>
+    <AppDiv>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -30,6 +31,6 @@ export const App = () => {
           <Route path="contacts" element={isAuth ? <Contacts /> : <LogIn />} />
         </Route>
       </Routes>
-    </div>
+    </AppDiv>
   );
 };

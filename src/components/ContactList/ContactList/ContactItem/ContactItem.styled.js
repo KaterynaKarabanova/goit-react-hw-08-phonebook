@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 export const StyledContactItem = styled.li`
-  background-color: rgb(228, 250, 250);
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   font-size: 30px;
   outline: thick double #32a1ce;
   padding: 10px;
@@ -10,8 +10,12 @@ export const StyledContactItem = styled.li`
   justify-content: space-between;
   max-width: 700px;
 `;
-export const StyledContactButton = styled.button`
-  background-color: darkred;
-  font-size: 20px;
-  color: aliceblue;
+
+export const StyledContactText = styled.p`
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 30px;
+  line-height: 1;
+  margin: 10px;
+  color: black;
+  font-weight: 600;
 `;

@@ -1,11 +1,11 @@
 import { setStatusFilter } from 'redux/filterSlice';
-import { StyledFilterLabel, StyledFilterInput } from './Filter.styled';
-
+import { StyledFilterInput } from './Filter.styled';
+import { StyledContactlabel } from '../ContactsForm/ContactForm.styled';
 import { useDispatch } from 'react-redux';
 export const Filter = () => {
   const dispatch = useDispatch();
   return (
-    <StyledFilterLabel>
+    <StyledContactlabel>
       Find Contact by name
       <StyledFilterInput
         type="text"
@@ -18,6 +18,6 @@ export const Filter = () => {
           dispatch(setStatusFilter({ value }));
         }}
       />
-    </StyledFilterLabel>
+    </StyledContactlabel>
   );
 };

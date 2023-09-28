@@ -7,7 +7,7 @@ import { getContactsItems } from '../redux/contactsSlice';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchTasks, addContacts } from 'redux/operations';
-
+import { HomeTitle } from '../pages/Home/Home.styled';
 export const Contacts = () => {
   const { items, isLoading, error } = useSelector(getContactsItems);
   const filter = useSelector(getFilterValue);
@@ -41,19 +41,19 @@ export const Contacts = () => {
         display: 'flex',
         gap: '20px',
         color: '#010101',
+        height: 'calc(100vh - 160px)',
       }}
     >
       <div>
-        <h1>Phonebook</h1>
+        <HomeTitle>Phonebook</HomeTitle>
         <ContactForm onFormSubmit={onFormSubmit} />
       </div>
       <div
         style={{
-          marginLeft: '700px',
+          marginLeft: '300px',
+          paddingTop: '235px',
         }}
       >
-        <h2>Contacts</h2>
-
         <Filter />
         {isLoading && (
           <p

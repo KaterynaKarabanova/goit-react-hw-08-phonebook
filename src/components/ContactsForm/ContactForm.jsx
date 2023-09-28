@@ -3,8 +3,9 @@ import {
   StyledContactForm,
   StyledContactlabel,
   StyledContactInput,
-  StyledContactButton,
 } from './ContactForm.styled';
+
+import { UserMenuBtn } from '../UserMenu/UserMenu.styled';
 export const ContactForm = ({ onFormSubmit }) => {
   const reset = e => {
     e.target.elements.name.value = '';
@@ -38,7 +39,7 @@ export const ContactForm = ({ onFormSubmit }) => {
           required
         />
       </StyledContactlabel>
-      <StyledContactButton type="submit">Add contact</StyledContactButton>
+      <UserMenuBtn type="submit">Add contact</UserMenuBtn>
     </StyledContactForm>
   );
 };

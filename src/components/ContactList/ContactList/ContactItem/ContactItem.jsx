@@ -1,21 +1,19 @@
 import PropTypes from 'prop-types';
-import { StyledContactItem, StyledContactButton } from './ContactItem.styled';
+import { StyledContactItem, StyledContactText } from './ContactItem.styled';
 import { useDispatch } from 'react-redux';
 
 import { deleteContacts } from '../../../../redux/operations';
+import { UserMenuBtn } from '../../../UserMenu/UserMenu.styled';
 export const ContactItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
   return (
     <StyledContactItem>
-      <p> {name}:</p>
-      <p>{` ` + number}</p>
+      <StyledContactText> {name}:</StyledContactText>
+      <StyledContactText>{` ` + number}</StyledContactText>
 
-      <StyledContactButton
-        type="button"
-        onClick={() => dispatch(deleteContacts(id))}
-      >
+      <UserMenuBtn type="button" onClick={() => dispatch(deleteContacts(id))}>
         Delete
-      </StyledContactButton>
+      </UserMenuBtn>
     </StyledContactItem>
   );
 };
