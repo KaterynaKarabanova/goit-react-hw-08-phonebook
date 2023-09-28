@@ -56,7 +56,14 @@ export const Registration = () => {
             required
           />
         </StyledContactlabel>
-        <UserMenuBtn type="submit">Registrate</UserMenuBtn>
+        <UserMenuBtn
+          style={{
+            minWidth: '800px',
+          }}
+          type="submit"
+        >
+          Registrate
+        </UserMenuBtn>
       </form>
     </div>
   );

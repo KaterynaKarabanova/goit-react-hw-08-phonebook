@@ -2,8 +2,10 @@ import {
   UserMenuBtn,
   UserMenuDiv,
 } from '../../components/UserMenu/UserMenu.styled';
+import { useNavigate } from 'react-router-dom';
 import { HomeText, HomeDiv, HomeImg, HomeTitle } from './Home.styled';
 export const Home = () => {
+  const navigate = useNavigate();
   return (
     <HomeDiv>
       <div>
@@ -16,8 +18,10 @@ export const Home = () => {
           register or log in if you already have an account
         </HomeText>
         <UserMenuDiv>
-          <UserMenuBtn>Registration</UserMenuBtn>
-          <UserMenuBtn>LogIn</UserMenuBtn>
+          <UserMenuBtn onClick={() => navigate('/register')}>
+            Registration
+          </UserMenuBtn>
+          <UserMenuBtn onClick={() => navigate('/login')}>LogIn</UserMenuBtn>
         </UserMenuDiv>
       </div>
       <HomeImg

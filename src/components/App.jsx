@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { Contacts } from '../pages/Contacts';
-import { LogIn } from 'pages/LogIn';
-import { AppDiv } from './App.styled';
+import { LogIn } from 'pages/LogIn/LogIn';
+import { AppDiv, AppB } from './App.styled';
 import { Registration } from 'pages/Registration/Registration';
 import { Home } from 'pages/Home/Home';
 import { Layout } from 'pages/Layout/Layout';
@@ -19,7 +19,13 @@ export const App = () => {
     setToken(`Bearer ${isAuth}`);
   }, [dispatch, isAuth]);
   return isRefreshing ? (
-    <b>Refreshing user</b>
+    <AppDiv
+      style={{
+        height: '100vh',
+      }}
+    >
+      <AppB>Refreshing user</AppB>
+    </AppDiv>
   ) : (
     <AppDiv>
       <Routes>

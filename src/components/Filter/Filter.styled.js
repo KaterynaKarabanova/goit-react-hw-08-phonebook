@@ -7,4 +7,5 @@ export const StyledFilterInput = styled.input`
   margin-top: 40px;
   padding-left: 20px;
   font-size: 40px;
+  -webkit-text-fill-color: black;
 `;

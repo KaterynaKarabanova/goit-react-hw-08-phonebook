@@ -2,7 +2,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginThunk } from 'redux/operations';
-
+import {
+  StyledContactlabel,
+  StyledContactInput,
+} from '../../components/ContactsForm/ContactForm.styled';
+import { UserMenuBtn } from '../../components/UserMenu/UserMenu.styled';
+import { HomeTitle } from '../Home/Home.styled';
 export const LogIn = () => {
   const navigate = useNavigate();
   const isAuth = useSelector(state => state.auth.token);
@@ -18,32 +23,38 @@ export const LogIn = () => {
     };
     console.log(userData);
     dispatch(loginThunk(userData));
-    // loginUser(userData).then(data => console.log(data), navigate('/contacts'));
     e.target.reset();
   };
   return (
-    <div>
-      <h1>LogIn</h1>
+    <div style={{ height: 'calc(100vh - 228px)' }}>
+      <HomeTitle>LogIn</HomeTitle>
       <form onSubmit={e => handleSubmit(e)}>
-        <label>
+        <StyledContactlabel>
           Email
-          <input
+          <StyledContactInput
             type="email"
             name="email"
             title="Need to add email using this format 'email@email.com'"
             required
           />
-        </label>
-        <label>
+        </StyledContactlabel>
+        <StyledContactlabel style={{ marginBottom: '65px' }}>
           Password
-          <input
+          <StyledContactInput
             type="password"
             name="password"
             title="add you password"
             required
           />
-        </label>
-        <button type="submit">LogIn</button>
+        </StyledContactlabel>
+        <UserMenuBtn
+          style={{
+            minWidth: '800px',
+          }}
+          type="submit"
+        >
+          LogIn
+        </UserMenuBtn>
       </form>
     </div>
   );
