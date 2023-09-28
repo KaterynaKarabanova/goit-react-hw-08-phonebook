@@ -7,6 +7,7 @@ import { Layout } from 'pages/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { refreshUser } from 'redux/operations';
+import { setToken } from 'services/auth-servise';
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(state => state.auth.isRefreshing);
@@ -14,7 +15,8 @@ export const App = () => {
   const isAuth = useSelector(state => state.auth.token);
   useEffect(() => {
     dispatch(refreshUser());
-  }, [dispatch]);
+    setToken(`Bearer ${isAuth}`);
+  }, [dispatch, isAuth]);
   return isRefreshing ? (
     <b>Refreshing user</b>
   ) : (
