@@ -22,21 +22,3 @@ export const getProfile = async () => {
   const { data } = await axios.get('/users/current');
   return data;
 };
-
-export const getContacts = async () => {
-  try {
-    const response = await axios.get('/contacts');
-    return response.data;
-  } catch (e) {
-    return console.log(e.message);
-  }
-};
-
-// export const setContacts = async ({ name, number }) => {
-//   try {
-//     const response = await axios.post('/contacts', { name, number });
-//     return response.data;
-//   } catch (e) {
-//     return console.log(e.message);
-//   }
-// };

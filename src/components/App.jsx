@@ -1,18 +1,23 @@
 import { Routes, Route } from 'react-router-dom';
-import { setToken } from '../services/auth-servise';
 import { Contacts } from '../pages/Contacts';
 import { LogIn } from 'pages/LogIn';
 import { Registration } from 'pages/Registration';
 import { Home } from 'pages/Home';
 import { Layout } from 'pages/Layout';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { refreshUser } from 'redux/operations';
 export const App = () => {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(state => state.auth.isRefreshing);
+  console.log(isRefreshing);
   const isAuth = useSelector(state => state.auth.token);
   useEffect(() => {
-    setToken(`Bearer ${isAuth}`);
-  }, [isAuth]);
-  return (
+    dispatch(refreshUser());
+  }, [dispatch]);
+  return isRefreshing ? (
+    <b>Refreshing user</b>
+  ) : (
     <div>
       <Routes>
         <Route path="/" element={<Layout />}>
