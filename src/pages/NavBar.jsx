@@ -1,31 +1,25 @@
 import { NavLink } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 export const NavBar = () => {
-  const navArr = [
-    {
-      src: '/',
-      title: 'Home',
-    },
-    {
-      src: '/contacts',
-      title: 'Contacts',
-    },
-    {
-      src: '/register',
-      title: 'Registration',
-    },
-    {
-      src: '/login',
-      title: 'LogIn ',
-    },
-  ];
+  const isAuth = useSelector(state => state.auth.token);
+
   return (
     <nav>
-      {navArr.map(({ src, title }) => (
-        <NavLink key={src} to={src}>
-          {title}
+      <NavLink key={'/'} to={'/'}>
+        Home
+      </NavLink>
+      {isAuth && (
+        <NavLink key={'/contacts'} to={'/contacts'}>
+          Contacts
         </NavLink>
-      ))}
+      )}
+
+      <NavLink key={'/register'} to={'/register'}>
+        Registration
+      </NavLink>
+      <NavLink key={'/login'} to={'/login'}>
+        LogIn
+      </NavLink>
     </nav>
   );
 };

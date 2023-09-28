@@ -1,8 +1,27 @@
+import { useNavigate } from 'react-router-dom';
+import { registrateUser } from 'services/auth-servise';
+
 export const Registration = () => {
+  const navigate = useNavigate();
+  const handleSubmit = e => {
+    e.preventDefault();
+    const userData = {
+      name: e.target.elements.name.value,
+      email: e.target.elements.email.value,
+      password: e.target.elements.password.value,
+    };
+    console.log(userData);
+    registrateUser(userData).then(
+      data => console.log(data),
+      navigate('/login')
+    );
+    e.target.reset();
+  };
+
   return (
     <div>
       <h1>Registration</h1>
-      <form>
+      <form onSubmit={e => handleSubmit(e)}>
         <label>
           Name
           <input
