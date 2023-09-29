@@ -1,5 +1,10 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getProfileThunk, loginThunk, refreshUser } from './operations';
+import {
+  getProfileThunk,
+  loginThunk,
+  logoutThunk,
+  registrateUserThunk,
+} from './operations';
 const initialState = {
   token: '',
   isLoading: false,
@@ -13,7 +18,6 @@ const handlePending = state => {
 const handleFulfilled = (state, { payload }) => {
   state.isLoading = false;
   state.error = '';
-  console.log(payload);
   state.token = payload.token;
 };
 const handleRejected = (state, { payload }) => {
@@ -23,40 +27,45 @@ const handleRejected = (state, { payload }) => {
 const handleFulfilledProfile = (state, { payload }) => {
   state.isLoading = false;
   state.error = '';
-  console.log(payload);
   state.profile = payload;
+};
+const handleRegistrate = state => {
+  state.isLoading = false;
+  state.error = '';
+  alert('You`ve been successfully registrated');
 };
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    logout(state) {
-      state.profile = null;
-      state.token = '';
-    },
-  },
+
   extraReducers: builder => {
     builder
       .addCase(loginThunk.fulfilled, handleFulfilled)
       .addCase(getProfileThunk.fulfilled, handleFulfilledProfile)
-      .addCase(refreshUser.pending, state => {
-        state.isRefreshing = true;
-      })
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(refreshUser.rejected, state => {
-        state.isRefreshing = false;
+      .addCase(registrateUserThunk.fulfilled, handleRegistrate)
+
+      .addCase(logoutThunk.fulfilled, state => {
+        state.profile = null;
+        state.token = '';
+        state.user = null;
       })
 
       .addMatcher(
-        isAnyOf(loginThunk.pending, getProfileThunk.pending),
+        isAnyOf(
+          loginThunk.pending,
+          getProfileThunk.pending,
+          logoutThunk.pending,
+          registrateUserThunk.pending
+        ),
         handlePending
       )
       .addMatcher(
-        isAnyOf(loginThunk.rejected, getProfileThunk.rejected),
+        isAnyOf(
+          loginThunk.rejected,
+          getProfileThunk.rejected,
+          logoutThunk.rejected,
+          registrateUserThunk.rejected
+        ),
         handleRejected
       );
   },

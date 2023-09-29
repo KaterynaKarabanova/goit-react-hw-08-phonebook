@@ -6,4 +6,8 @@ export const StyledContactList = styled.ul`
   grid-template-columns: 400px 400px 400px;
   gap: 15px;
   padding: 30px 20px;
+  @media (max-width: 768px) {
+    display: block;
+    padding: 15px 10px;
+  }
 `;

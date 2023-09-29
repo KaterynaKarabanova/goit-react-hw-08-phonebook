@@ -1,20 +1,24 @@
-import { ContactForm } from '../components/ContactsForm/ContactForm';
-import { Filter } from '../components/Filter/Filter';
-import { ContactList } from '../components/ContactList/ContactList/ContactList';
+import { ContactForm } from '../../components/ContactsForm/ContactForm';
+import { Filter } from '../../components/Filter/Filter';
+import { ContactList } from '../../components/ContactList/ContactList/ContactList';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { getFilterValue } from '../redux/filterSlice';
-import { getContactsItems } from '../redux/contactsSlice';
+import { getFilterValue } from '../../redux/filterSlice';
+import { getContactsItems } from '../../redux/contactsSlice';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { ContactsDiv, ContactListDiv } from './Contacts.styled';
 import { fetchTasks, addContacts } from 'redux/operations';
-import { HomeTitle } from '../pages/Home/Home.styled';
+import { HomeTitle } from '../Home/Home.styled';
 export const Contacts = () => {
   const { items, isLoading, error } = useSelector(getContactsItems);
   const filter = useSelector(getFilterValue);
+  const isAuth = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
+    if (isAuth) {
+      dispatch(fetchTasks());
+    }
+  }, [dispatch, isAuth]);
   const onFormSubmit = e => {
     e.preventDefault();
     const name = e.target.elements.name.value;
@@ -36,24 +40,12 @@ export const Contacts = () => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        gap: '20px',
-        color: '#010101',
-        height: 'calc(100vh - 160px)',
-      }}
-    >
+    <ContactsDiv>
       <div>
         <HomeTitle>Phonebook</HomeTitle>
         <ContactForm onFormSubmit={onFormSubmit} />
       </div>
-      <div
-        style={{
-          marginLeft: '300px',
-          paddingTop: '235px',
-        }}
-      >
+      <ContactListDiv>
         <Filter />
         {isLoading && (
           <p
@@ -74,7 +66,7 @@ export const Contacts = () => {
           </p>
         )}
         {!isLoading && <ContactList contacts={onSearch()} />}
-      </div>
-    </div>
+      </ContactListDiv>
+    </ContactsDiv>
   );
 };

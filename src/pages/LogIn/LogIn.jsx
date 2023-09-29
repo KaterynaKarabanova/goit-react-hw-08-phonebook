@@ -6,7 +6,7 @@ import {
   StyledContactlabel,
   StyledContactInput,
 } from '../../components/ContactsForm/ContactForm.styled';
-import { UserMenuBtn } from '../../components/UserMenu/UserMenu.styled';
+import { RegBtn } from '../../components/UserMenu/UserMenu.styled';
 import { HomeTitle } from '../Home/Home.styled';
 export const LogIn = () => {
   const navigate = useNavigate();
@@ -21,12 +21,17 @@ export const LogIn = () => {
       email: e.target.elements.email.value,
       password: e.target.elements.password.value,
     };
-    console.log(userData);
+
     dispatch(loginThunk(userData));
     e.target.reset();
   };
   return (
-    <div style={{ height: 'calc(100vh - 228px)' }}>
+    <div
+      style={{
+        height: 'calc(100vh - 228px)',
+        paddingBottom: '80px',
+      }}
+    >
       <HomeTitle>LogIn</HomeTitle>
       <form onSubmit={e => handleSubmit(e)}>
         <StyledContactlabel>
@@ -47,14 +52,7 @@ export const LogIn = () => {
             required
           />
         </StyledContactlabel>
-        <UserMenuBtn
-          style={{
-            minWidth: '800px',
-          }}
-          type="submit"
-        >
-          LogIn
-        </UserMenuBtn>
+        <RegBtn type="submit">LogIn</RegBtn>
       </form>
     </div>
   );

@@ -6,7 +6,7 @@ import {
   StyledContactInput,
 } from '../../components/ContactsForm/ContactForm.styled';
 
-import { UserMenuBtn } from '../../components/UserMenu/UserMenu.styled';
+import { RegBtn } from '../../components/UserMenu/UserMenu.styled';
 export const Registration = () => {
   const navigate = useNavigate();
   const handleSubmit = e => {
@@ -16,11 +16,18 @@ export const Registration = () => {
       email: e.target.elements.email.value,
       password: e.target.elements.password.value,
     };
-    console.log(userData);
-    registrateUser(userData).then(
-      data => console.log(data),
-      navigate('/login')
-    );
+    registrateUser(userData)
+      .then(data => {
+        if (data.response.status === 200) {
+          navigate('/login');
+        }
+      })
+      .catch(
+        alert(
+          'Oopps, something went wrong. Try refresh the page or add another data'
+        )
+      );
+
     e.target.reset();
   };
 
@@ -56,14 +63,7 @@ export const Registration = () => {
             required
           />
         </StyledContactlabel>
-        <UserMenuBtn
-          style={{
-            minWidth: '800px',
-          }}
-          type="submit"
-        >
-          Registrate
-        </UserMenuBtn>
+        <RegBtn type="submit">Registrate</RegBtn>
       </form>
     </div>
   );

@@ -18,4 +18,7 @@ export const StyledContactText = styled.p`
   margin: 10px;
   color: black;
   font-weight: 600;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;

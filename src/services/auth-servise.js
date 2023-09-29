@@ -13,8 +13,13 @@ export const registrateUser = async body => {
 };
 export const loginUser = async body => {
   const { data } = await axios.post('/users/login', body);
-  console.log(data);
+
   setToken(`Bearer ${data.token}`);
+  return data;
+};
+export const logoutUser = async body => {
+  const { data } = await axios.post('/users/logout');
+
   return data;
 };
 

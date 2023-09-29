@@ -15,13 +15,16 @@ export const NavBar = () => {
           Contacts
         </StyledLink>
       )}
-
-      <StyledLink key={'/register'} to={'/register'}>
-        Registration
-      </StyledLink>
-      <StyledLink key={'/login'} to={'/login'}>
-        LogIn
-      </StyledLink>
+      {!isAuth && (
+        <>
+          <StyledLink key={'/register'} to={'/register'}>
+            Registration
+          </StyledLink>
+          <StyledLink key={'/login'} to={'/login'}>
+            LogIn
+          </StyledLink>
+        </>
+      )}
     </NavNav>
   );
 };
@@ -42,5 +45,9 @@ const StyledLink = styled(NavLink)`
   }
   &:hover:not(.active) {
     background-color: #78b9d7af;
+  }
+  @media (max-width: 768px) {
+    font-size: 18px;
+    gap: 5px;
   }
 `;
