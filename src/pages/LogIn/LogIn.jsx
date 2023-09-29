@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginThunk } from 'redux/operations';
+import Notiflix from 'notiflix';
 import {
   StyledContactlabel,
   StyledContactInput,
@@ -22,7 +23,20 @@ export const LogIn = () => {
       password: e.target.elements.password.value,
     };
 
-    dispatch(loginThunk(userData));
+    dispatch(loginThunk(userData))
+      .unwrap()
+      .then(res =>
+        Notiflix.Notify.success('All is good, wlecome, ' + res.user.name, {
+          width: '50%',
+          fontSize: '40px',
+        })
+      )
+      .catch(() =>
+        Notiflix.Notify.failure('Data is not valid', {
+          width: '50%',
+          fontSize: '40px',
+        })
+      );
     e.target.reset();
   };
   return (

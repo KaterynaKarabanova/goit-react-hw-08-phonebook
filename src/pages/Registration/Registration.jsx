@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-
+import Notiflix from 'notiflix';
 import { HomeTitle } from '../Home/Home.styled';
 import {
   StyledContactlabel,
@@ -26,8 +26,18 @@ export const Registration = () => {
     };
     dispatch(registrateUserThunk(userData))
       .unwrap()
-      .then(res => alert('All is good, wlecome' + res.user.name))
-      .catch(() => alert('Data is not valid'));
+      .then(res =>
+        Notiflix.Notify.success('All is good, wlecome, ' + res.user.name, {
+          width: '50%',
+          fontSize: '40px',
+        })
+      )
+      .catch(() =>
+        Notiflix.Notify.failure('Data is not valid', {
+          width: '50%',
+          fontSize: '40px',
+        })
+      );
 
     e.target.reset();
   };

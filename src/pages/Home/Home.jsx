@@ -17,8 +17,8 @@ export const Home = () => {
         {isAuth ? (
           <HomeText>
             Welcome to the PhoneBook app! With this application, you can safely
-            store your contacts. You are loged in so now you use contacts
-            section
+            store your contacts. You are signed in, so you are now allowed to
+            use contacts section
           </HomeText>
         ) : (
           <HomeText>
