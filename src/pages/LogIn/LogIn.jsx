@@ -26,15 +26,15 @@ export const LogIn = () => {
     dispatch(loginThunk(userData))
       .unwrap()
       .then(res =>
-        Notiflix.Notify.success('All is good, wlecome, ' + res.user.name, {
-          width: '50%',
-          fontSize: '40px',
+        Notiflix.Notify.success('All is good, welcome, ' + res.user.name, {
+          width: '70%',
+          fontSize: '30px',
         })
       )
       .catch(() =>
         Notiflix.Notify.failure('Data is not valid', {
-          width: '50%',
-          fontSize: '40px',
+          width: '70%',
+          fontSize: '30px',
         })
       );
     e.target.reset();
