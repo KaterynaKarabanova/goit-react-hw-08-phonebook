@@ -25,12 +25,6 @@ export const Registration = () => {
       password: e.target.elements.password.value,
     };
     dispatch(registrateUserThunk(userData));
-    // .then(data => {
-    //   // if (data.token) {
-    //   //   navigate('/contacts');
-    //   // }
-    // })
-    // .catch(e => console.log(e));
 
     e.target.reset();
   };
