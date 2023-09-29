@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { registrateUser } from 'services/auth-servise';
+
 import { HomeTitle } from '../Home/Home.styled';
 import {
   StyledContactlabel,
