@@ -29,7 +29,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="register" element={!isAuth && <Registration />} />
+          <Route path="register" element={<Registration />} />
           <Route path="*" element={<Home />} />
           <Route path="login" element={<LogIn />} />
           <Route path="contacts" element={isAuth ? <Contacts /> : <LogIn />} />

@@ -7,8 +7,14 @@ import {
 } from '../../components/ContactsForm/ContactForm.styled';
 
 import { RegBtn } from '../../components/UserMenu/UserMenu.styled';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 export const Registration = () => {
   const navigate = useNavigate();
+  const isAuth = useSelector(state => state.auth.token);
+  useEffect(() => {
+    isAuth && navigate('/contacts');
+  }, [isAuth, navigate]);
   const handleSubmit = e => {
     e.preventDefault();
     const userData = {
