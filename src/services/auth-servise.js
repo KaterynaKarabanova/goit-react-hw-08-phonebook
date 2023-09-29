@@ -9,7 +9,13 @@ export const delToken = () => {
 };
 
 export const registrateUser = async body => {
-  return await axios.post('/users/signup', body);
+  const data = axios.post('/users/signup', body);
+  const newData = await data.then(data => {
+    setToken(`Bearer ${data.data.token}`);
+    return data.data;
+  });
+
+  return newData;
 };
 export const loginUser = async body => {
   const { data } = await axios.post('/users/login', body);

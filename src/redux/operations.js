@@ -2,7 +2,6 @@ import axios from 'axios';
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  delToken,
   getProfile,
   loginUser,
   logoutUser,
@@ -48,6 +47,7 @@ export const registrateUserThunk = createAsyncThunk(
   'auth/registration',
   async body => {
     const data = await registrateUser(body);
+    console.log(data);
     return data;
   }
 );
@@ -59,7 +59,7 @@ export const loginThunk = createAsyncThunk('auth/login', async body => {
 
 export const logoutThunk = createAsyncThunk('auth/logout', async () => {
   const data = await logoutUser();
-  delToken();
+
   return data;
 });
 

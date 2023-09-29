@@ -8,13 +8,15 @@ import {
 
 import { RegBtn } from '../../components/UserMenu/UserMenu.styled';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { registrateUserThunk } from 'redux/operations';
 export const Registration = () => {
   const navigate = useNavigate();
   const isAuth = useSelector(state => state.auth.token);
   useEffect(() => {
     isAuth && navigate('/contacts');
   }, [isAuth, navigate]);
+  const dispatch = useDispatch();
   const handleSubmit = e => {
     e.preventDefault();
     const userData = {
@@ -22,17 +24,13 @@ export const Registration = () => {
       email: e.target.elements.email.value,
       password: e.target.elements.password.value,
     };
-    registrateUser(userData)
-      .then(data => {
-        if (data.response.status === 200) {
-          navigate('/login');
-        }
-      })
-      .catch(
-        alert(
-          'Oopps, something went wrong. Try refresh the page or add another data'
-        )
-      );
+    dispatch(registrateUserThunk(userData));
+    // .then(data => {
+    //   // if (data.token) {
+    //   //   navigate('/contacts');
+    //   // }
+    // })
+    // .catch(e => console.log(e));
 
     e.target.reset();
   };

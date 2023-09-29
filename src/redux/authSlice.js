@@ -29,10 +29,11 @@ const handleFulfilledProfile = (state, { payload }) => {
   state.error = '';
   state.profile = payload;
 };
-const handleRegistrate = state => {
+const handleRegistrate = (state, { payload }) => {
   state.isLoading = false;
   state.error = '';
-  alert('You`ve been successfully registrated');
+  console.log(payload);
+  state.token = payload.token;
 };
 const authSlice = createSlice({
   name: 'auth',
