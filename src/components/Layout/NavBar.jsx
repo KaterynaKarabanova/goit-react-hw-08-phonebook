@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { NavNav } from './NavBar.styled';
 import styled from 'styled-components';
 export const NavBar = () => {
-  const isAuth = useSelector(state => state.auth.token);
+  const isAuth = useSelector(state => state.auth.isLoggedIn);
 
   return (
     <NavNav>

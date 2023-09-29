@@ -8,6 +8,16 @@ import {
   registrateUser,
 } from 'services/auth-servise';
 
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+
+export const setToken = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+export const delToken = () => {
+  delete axios.defaults.headers.common['Authorization'];
+};
+
+// Contacts operations
 export const fetchTasks = createAsyncThunk(
   'contacts/fetchAll',
 
@@ -43,27 +53,39 @@ export const deleteContacts = createAsyncThunk(
     }
   }
 );
+
+//
 export const registrateUserThunk = createAsyncThunk(
   'auth/registration',
   async body => {
     const data = await registrateUser(body);
-    console.log(data);
+    setToken(data.token);
+
     return data;
   }
 );
 
 export const loginThunk = createAsyncThunk('auth/login', async body => {
   const data = await loginUser(body);
+  setToken(data.token);
   return data;
 });
 
 export const logoutThunk = createAsyncThunk('auth/logout', async () => {
   const data = await logoutUser();
-
+  delToken();
   return data;
 });
 
-export const getProfileThunk = createAsyncThunk('auth/profile', async () => {
-  const data = await getProfile();
-  return data;
-});
+export const getProfileThunk = createAsyncThunk(
+  'auth/profile',
+  async (_, thunkAPI) => {
+    const token = thunkAPI.getState().auth.token;
+    if (!token) {
+      return thunkAPI.rejectWithValue('token is not exist');
+    }
+    setToken(token);
+    const data = await getProfile();
+    return data;
+  }
+);

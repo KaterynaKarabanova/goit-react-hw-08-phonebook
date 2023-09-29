@@ -10,6 +10,7 @@ const initialState = {
   isLoading: false,
   error: '',
   profile: null,
+  isLoggedIn: false,
   isRefreshing: false,
 };
 const handlePending = state => {
@@ -18,8 +19,11 @@ const handlePending = state => {
 const handleFulfilled = (state, { payload }) => {
   state.isLoading = false;
   state.error = '';
+  state.isLoggedIn = true;
   state.token = payload.token;
+  state.profile = payload.user;
 };
+
 const handleRejected = (state, { payload }) => {
   state.isLoading = false;
   state.error = payload;
@@ -27,14 +31,11 @@ const handleRejected = (state, { payload }) => {
 const handleFulfilledProfile = (state, { payload }) => {
   state.isLoading = false;
   state.error = '';
+  state.isLoggedIn = true;
   state.profile = payload;
+  state.isRefreshing = false;
 };
-const handleRegistrate = (state, { payload }) => {
-  state.isLoading = false;
-  state.error = '';
-  console.log(payload);
-  state.token = payload.token;
-};
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -43,18 +44,24 @@ const authSlice = createSlice({
     builder
       .addCase(loginThunk.fulfilled, handleFulfilled)
       .addCase(getProfileThunk.fulfilled, handleFulfilledProfile)
-      .addCase(registrateUserThunk.fulfilled, handleRegistrate)
+      .addCase(registrateUserThunk.fulfilled, handleFulfilled)
 
       .addCase(logoutThunk.fulfilled, state => {
         state.profile = null;
         state.token = '';
-        state.user = null;
+        state.isLoggedIn = false;
+      })
+      .addCase(getProfileThunk.pending, state => {
+        state.isRefreshing = true;
       })
 
+      .addCase(getProfileThunk.rejected, state => {
+        state.isRefreshing = false;
+      })
       .addMatcher(
         isAnyOf(
           loginThunk.pending,
-          getProfileThunk.pending,
+
           logoutThunk.pending,
           registrateUserThunk.pending
         ),
@@ -63,7 +70,6 @@ const authSlice = createSlice({
       .addMatcher(
         isAnyOf(
           loginThunk.rejected,
-          getProfileThunk.rejected,
           logoutThunk.rejected,
           registrateUserThunk.rejected
         ),

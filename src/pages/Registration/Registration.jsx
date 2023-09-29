@@ -24,7 +24,10 @@ export const Registration = () => {
       email: e.target.elements.email.value,
       password: e.target.elements.password.value,
     };
-    dispatch(registrateUserThunk(userData));
+    dispatch(registrateUserThunk(userData))
+      .unwrap()
+      .then(res => alert('All is good, wlecome' + res.user.name))
+      .catch(() => alert('Data is not valid'));
 
     e.target.reset();
   };

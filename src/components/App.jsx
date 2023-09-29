@@ -8,18 +8,15 @@ import { Layout } from '../components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getProfileThunk } from 'redux/operations';
-import { setToken } from 'services/auth-servise';
+
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(state => state.auth.isRefreshing);
 
-  const isAuth = useSelector(state => state.auth.token);
+  const isAuth = useSelector(state => state.auth.isLoggedIn);
   useEffect(() => {
-    if (isAuth) {
-      setToken(`Bearer ${isAuth}`);
-      dispatch(getProfileThunk());
-    }
-  }, [dispatch, isAuth]);
+    dispatch(getProfileThunk());
+  }, [dispatch]);
   return isRefreshing ? (
     <AppDiv>
       <AppB>Refreshing user</AppB>
