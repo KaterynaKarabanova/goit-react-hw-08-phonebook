@@ -3,7 +3,7 @@ export const UserMenuDiv = styled.div`
   display: flex;
   gap: 50px;
   align-items: center;
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     display: block;
   }
 `;
@@ -17,9 +17,9 @@ export const UserMenuName = styled.p`
   line-height: 1;
   padding: 5px 10px;
   font-weight: 500;
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     font-size: 17px;
-    max-width: 150px;
+    max-width: 300px;
   }
 `;
 
@@ -61,7 +61,7 @@ export const UserMenuBtn = styled.button`
   font-size: 22px;
   font-weight: 500;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     font-size: 15px;
     min-width: 80px;
     font-weight: 300;
@@ -105,9 +105,10 @@ export const RegBtn = styled.button`
   font-size: 22px;
   font-weight: 500;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     font-size: 15px;
     min-width: 270px;
+    max-width: 300px;
     font-weight: 300;
     height: 40px;
     padding-left: 5px;

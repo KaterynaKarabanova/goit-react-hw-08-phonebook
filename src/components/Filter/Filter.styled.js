@@ -8,7 +8,7 @@ export const StyledFilterInput = styled.input`
   padding-left: 20px;
   font-size: 40px;
   -webkit-text-fill-color: black;
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     width: 290px;
     font-size: 20px;
     padding-left: 10px;

@@ -6,7 +6,7 @@ export const HomeText = styled.p`
   font-weight: 500;
   margin-bottom: 80px;
   color: #330867;
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     font-size: 18px;
     margin-bottom: 40px;
     width: 290px;
@@ -19,7 +19,7 @@ export const HomeDiv = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     display: block;
     margin-top: 70px;
   }
@@ -29,7 +29,7 @@ export const HomeImg = styled.img`
   height: 650px;
   box-shadow: 60px -16px white;
   border-radius: 50%;
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     display: none;
   }
 `;
@@ -38,14 +38,14 @@ export const HomeTitle = styled.h1`
   background: -webkit-linear-gradient(#30cfd0 0%, #330867 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     font-size: 40px;
   }
 `;
 export const ContactTitle = styled.h2`
   font-size: 100px;
   color: white;
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     font-size: 50px;
   }
 `;
