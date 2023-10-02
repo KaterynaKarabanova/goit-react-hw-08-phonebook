@@ -15,7 +15,7 @@ export const HomeText = styled.p`
 export const HomeDiv = styled.div`
   height: calc(100vh - 160px);
   display: flex;
-  gap: 400px;
+  gap: 300px;
   justify-content: center;
   align-items: center;
 
@@ -25,11 +25,11 @@ export const HomeDiv = styled.div`
   }
 `;
 export const HomeImg = styled.img`
-  width: 650px;
-  height: 650px;
+  width: 600px;
+  height: 600px;
   box-shadow: 60px -16px white;
   border-radius: 50%;
-  @media (max-width: 1200px) {
+  @media (max-width: 1600px) {
     display: none;
   }
 `;
